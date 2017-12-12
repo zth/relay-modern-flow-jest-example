@@ -1,0 +1,4 @@
+{
+  "plugins": ["relay", "transform-class-properties"],
+  "presets": ["flow", "react", "es2015"]
+}
