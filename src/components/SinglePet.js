@@ -22,7 +22,7 @@ type State = {|
  * createEnumValidator takes that object and creates a function that takes a string (keyboard input for example) and validates
  * that to the provided enum.
  *
- * Check out how we use it in our onChange of the text input below to achieve type save string input in an easy way.
+ * Check out how we use it in our onChange of the text input below to achieve type safe string input in an easy way.
  */
 
 const ensureStringIsValidGrade = createEnumValidator(Grade);
