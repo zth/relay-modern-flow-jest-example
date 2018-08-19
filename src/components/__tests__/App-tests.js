@@ -105,7 +105,8 @@ describe('App', () => {
                 node: {
                   __typename: 'Pet',
                   id: 'pet-1',
-                  name: 'Cat the Pet'
+                  name: 'Cat the Pet',
+                  grade: 'A'
                 }
               },
               {
@@ -113,7 +114,8 @@ describe('App', () => {
                 node: {
                   __typename: 'Pet',
                   id: 'pet-2',
-                  name: 'Dog the Pet'
+                  name: 'Dog the Pet',
+                  grade: 'B'
                 }
               }
             ]

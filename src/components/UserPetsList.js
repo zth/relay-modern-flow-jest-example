@@ -2,6 +2,7 @@
 import { graphql, createPaginationContainer } from 'react-relay';
 import type { UserPetsList_user } from './__generated__/UserPetsList_user.graphql';
 import * as React from 'react';
+import SinglePet from './SinglePet';
 
 type Props = {|
   relay: {
@@ -65,7 +66,7 @@ class UserPetsList extends React.Component<Props, State> {
         <div>
           {userPets.map(pet => (
             <div key={pet.id} data-testid="Pet">
-              <h2>{pet.name}</h2>
+              <SinglePet pet={pet} />
             </div>
           ))}
           {relay.hasMore() && (
@@ -91,7 +92,7 @@ export default createPaginationContainer(
         edges {
           node {
             id
-            name
+            ...SinglePet_pet
           }
         }
       }

@@ -17,9 +17,3 @@ yarn test # To run tests
 ```
 
 Check out `package.json` scripts for more.
-
-## TODO
-
-- [x] Pagination container example
-- [ ] Refetch container example
-- [ ] Mutations example

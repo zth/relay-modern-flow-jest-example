@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bb6e3bbe9e7fba6f402b5f7f8fa88424
+ * @relayHash dcc51335c7e8752e5edd863e2fc73de1
  */
 
 /* eslint-disable */
@@ -46,7 +46,7 @@ fragment UserPetsList_user on User {
     edges {
       node {
         id
-        name
+        ...SinglePet_pet
         __typename
       }
       cursor
@@ -56,6 +56,12 @@ fragment UserPetsList_user on User {
       hasNextPage
     }
   }
+}
+
+fragment SinglePet_pet on Pet {
+  id
+  name
+  grade
 }
 */
 
@@ -121,7 +127,7 @@ return {
   "operationKind": "query",
   "name": "UserPetsListPaginationQuery",
   "id": null,
-  "text": "query UserPetsListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n) {\n  User(userId: $userId) {\n    ...UserPetsList_user\n    id\n  }\n}\n\nfragment UserPetsList_user on User {\n  id\n  name\n  pets(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+  "text": "query UserPetsListPaginationQuery(\n  $count: Int!\n  $cursor: String\n  $userId: ID!\n) {\n  User(userId: $userId) {\n    ...UserPetsList_user\n    id\n  }\n}\n\nfragment UserPetsList_user on User {\n  id\n  name\n  pets(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...SinglePet_pet\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SinglePet_pet on Pet {\n  id\n  name\n  grade\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -193,6 +199,13 @@ return {
                     "selections": [
                       v2,
                       v3,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "grade",
+                        "args": null,
+                        "storageKey": null
+                      },
                       {
                         "kind": "ScalarField",
                         "alias": null,

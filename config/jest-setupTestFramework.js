@@ -10,5 +10,6 @@ beforeEach(() => {
    */
 
   queryMock.reset();
-  cleanup();
 });
+
+afterEach(cleanup);

@@ -1,5 +1,6 @@
 schema {
   query: RootQuery
+  mutation: Mutation
 }
 
 type RootQuery {
@@ -19,6 +20,7 @@ type Pet {
   name: String!
   owner: User
   type: PetType
+  grade: Grade
 }
 
 enum PetType {
@@ -41,4 +43,23 @@ type PageInfo {
   hasPreviousPage: Boolean!
   endCursor: String
   startCursor: String
+}
+
+enum Grade {
+  A
+  B
+  C
+}
+
+input SetPetGradeInput {
+  petId: ID!
+  grade: Grade!
+}
+
+type SetPetGradePayload {
+  pet: Pet!
+}
+
+type Mutation {
+  setPetGrade(input: SetPetGradeInput!): SetPetGradePayload
 }

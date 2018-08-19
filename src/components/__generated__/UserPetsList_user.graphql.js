@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type SinglePet_pet$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type UserPetsList_user$ref: FragmentReference;
 export type UserPetsList_user = {|
@@ -17,7 +18,7 @@ export type UserPetsList_user = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +name: string,
+        +$fragmentRefs: SinglePet_pet$ref,
       |}
     |}>
   |},
@@ -31,13 +32,6 @@ var v0 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v1 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "name",
   "args": null,
   "storageKey": null
 };
@@ -71,7 +65,13 @@ return {
   ],
   "selections": [
     v0,
-    v1,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": "pets",
@@ -100,7 +100,11 @@ return {
               "plural": false,
               "selections": [
                 v0,
-                v1,
+                {
+                  "kind": "FragmentSpread",
+                  "name": "SinglePet_pet",
+                  "args": null
+                },
                 {
                   "kind": "ScalarField",
                   "alias": null,
@@ -150,5 +154,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a8f65e8baa7a74774c93804d3280e1f4';
+(node/*: any*/).hash = '675990e5165cf53ec4fe74cec42a8d67';
 module.exports = node;

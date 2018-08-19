@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8553f37508c085d818382b17977ee2e5
+ * @relayHash 9be04660789742a186fb2b8408a2985a
  */
 
 /* eslint-disable */
@@ -47,7 +47,7 @@ fragment UserPetsList_user on User {
     edges {
       node {
         id
-        name
+        ...SinglePet_pet
         __typename
       }
       cursor
@@ -57,6 +57,12 @@ fragment UserPetsList_user on User {
       hasNextPage
     }
   }
+}
+
+fragment SinglePet_pet on Pet {
+  id
+  name
+  grade
 }
 */
 
@@ -122,7 +128,7 @@ return {
   "operationKind": "query",
   "name": "UserPetsQuery",
   "id": null,
-  "text": "query UserPetsQuery(\n  $userId: ID!\n  $count: Int!\n  $cursor: String\n) {\n  User(userId: $userId) {\n    id\n    ...UserPetsList_user\n  }\n}\n\nfragment UserPetsList_user on User {\n  id\n  name\n  pets(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+  "text": "query UserPetsQuery(\n  $userId: ID!\n  $count: Int!\n  $cursor: String\n) {\n  User(userId: $userId) {\n    id\n    ...UserPetsList_user\n  }\n}\n\nfragment UserPetsList_user on User {\n  id\n  name\n  pets(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...SinglePet_pet\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SinglePet_pet on Pet {\n  id\n  name\n  grade\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -195,6 +201,13 @@ return {
                     "selections": [
                       v2,
                       v3,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "grade",
+                        "args": null,
+                        "storageKey": null
+                      },
                       {
                         "kind": "ScalarField",
                         "alias": null,

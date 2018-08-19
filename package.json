@@ -21,7 +21,7 @@
     "test:watch": "jest src --watch",
     "flow": "flow",
     "graphql:generate-assets": "graphql-generate-flow-schema-assets --schema ./config/schema.graphql -e --enums-file-path ./src/constants/enums.js -o --object-types-file-path ./src/constants/object-types.js",
-    "relay": "relay-compiler --src ./src --schema ./config/schema.graphql",
+    "relay": "relay-compiler --noFutureProofEnums=true --src ./src --schema ./config/schema.graphql",
     "relay:watch": "yarn relay --watch"
   },
   "author": "Gabriel Nordeborn",
