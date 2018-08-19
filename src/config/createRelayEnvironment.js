@@ -1,12 +1,6 @@
 // @flow
-import {
-  Environment,
-  Network,
-  RecordSource,
-  Store,
-} from 'relay-runtime';
-
-import fetchQuery from './fetchQuery';
+import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import { fetchQuery } from './fetchQuery';
 
 const source = new RecordSource();
 const store = new Store(source);

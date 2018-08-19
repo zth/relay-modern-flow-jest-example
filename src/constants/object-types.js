@@ -4,18 +4,14 @@
  * THIS FILE IS AUTO GENERATED, DO NOT EDIT DIRECTLY.
  */
 
-export type ObjectTypesEnum = 'File' | 'Message' | 'Query' | 'User' | 'Viewer';
+export type ObjectTypesEnum = 'RootQuery' | 'User' | 'Pet';
 
 export const ObjectTypes: {|
-  +File: 'File',
-  +Message: 'Message',
-  +Query: 'Query',
+  +RootQuery: 'RootQuery',
   +User: 'User',
-  +Viewer: 'Viewer'
+  +Pet: 'Pet'
 |} = {
-  File: 'File',
-  Message: 'Message',
-  Query: 'Query',
+  RootQuery: 'RootQuery',
   User: 'User',
-  Viewer: 'Viewer'
+  Pet: 'Pet'
 };

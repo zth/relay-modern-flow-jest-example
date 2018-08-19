@@ -8,9 +8,8 @@ import type { AppQueryResponse } from './__generated__/AppQuery.graphql';
 const query = graphql`
   query AppQuery {
     viewer {
-      user {
-        ...ProfileDisplayer_user
-      }
+      id
+      ...ProfileDisplayer_user
     }
   }
 `;
@@ -30,23 +29,21 @@ export class App extends React.Component<{}> {
             props: AppQueryResponse
           }) => {
             if (error) {
-              return (
-                <div className="ErrorScreen" data-testid="App__ErrorScreen">
-                  Something went wrong!
-                </div>
-              );
+              console.error(error);
+              return <div className="ErrorScreen">Something went wrong!</div>;
             }
 
             if (props) {
               // Here, Flow makes sure we pass the correct props to ProfileDisplayer
               return (
-                <div className="AppDisplayer" data-testid="App__Displayer">
-                  <ProfileDisplayer user={props.viewer.user} />
+                <div className="AppDisplayer">
+                  <ProfileDisplayer user={props.viewer} />
                 </div>
               );
             }
 
-            return null; // This could be a loading screen etc
+            // No error or props means we're loading still
+            return <div className="AppDisplayer--loading">Loading app...</div>;
           }}
         />
       </div>

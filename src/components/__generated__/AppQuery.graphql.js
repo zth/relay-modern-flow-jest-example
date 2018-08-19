@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ff918b378295924291c5b5832112e596
+ * @relayHash 8d2ffc913cbde992e6a81148ad6eba5e
  */
 
 /* eslint-disable */
@@ -8,11 +8,18 @@
 'use strict';
 
 /*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteRequest } from 'relay-runtime';
+type ProfileDisplayer_user$ref = any;
+export type AppQueryVariables = {||};
 export type AppQueryResponse = {|
-  +viewer: {|
-    +user: ?{| |};
-  |};
+  +viewer: ?{|
+    +id: string,
+    +$fragmentRefs: ProfileDisplayer_user$ref,
+  |}
+|};
+export type AppQuery = {|
+  variables: AppQueryVariables,
+  response: AppQueryResponse,
 |};
 */
 
@@ -20,134 +27,86 @@ export type AppQueryResponse = {|
 /*
 query AppQuery {
   viewer {
-    user {
-      ...ProfileDisplayer_user
-      id
-    }
     id
+    ...ProfileDisplayer_user
   }
 }
 
 fragment ProfileDisplayer_user on User {
   id
   name
-  messages {
-    count
-  }
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
-  "fragment": {
-    "argumentDefinitions": [],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "AppQuery",
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "args": null,
-        "concreteType": "Viewer",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "ProfileDisplayer_user",
-                "args": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ],
-    "type": "Query"
-  },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
+  "kind": "Request",
+  "operationKind": "query",
   "name": "AppQuery",
-  "query": {
-    "argumentDefinitions": [],
-    "kind": "Root",
+  "id": null,
+  "text": "query AppQuery {\n  viewer {\n    id\n    ...ProfileDisplayer_user\n  }\n}\n\nfragment ProfileDisplayer_user on User {\n  id\n  name\n}\n",
+  "metadata": {},
+  "fragment": {
+    "kind": "Fragment",
     "name": "AppQuery",
-    "operation": "query",
+    "type": "RootQuery",
+    "metadata": null,
+    "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": null,
-        "concreteType": "Viewer",
         "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
         "plural": false,
         "selections": [
+          v0,
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "User",
-            "name": "user",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "name",
-                "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "MessageConnection",
-                "name": "messages",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "count",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "args": null,
-            "name": "id",
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "ProfileDisplayer_user",
+            "args": null
           }
-        ],
-        "storageKey": null
+        ]
       }
     ]
   },
-  "text": "query AppQuery {\n  viewer {\n    user {\n      ...ProfileDisplayer_user\n      id\n    }\n    id\n  }\n}\n\nfragment ProfileDisplayer_user on User {\n  id\n  name\n  messages {\n    count\n  }\n}\n"
+  "operation": {
+    "kind": "Operation",
+    "name": "AppQuery",
+    "argumentDefinitions": [],
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "viewer",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "User",
+        "plural": false,
+        "selections": [
+          v0,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
+  }
 };
-
-module.exports = batch;
+})();
+// prettier-ignore
+(node/*: any*/).hash = '72c837dc05ae6b0b842a40a6ab40b48c';
+module.exports = node;

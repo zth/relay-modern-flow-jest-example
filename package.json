@@ -7,12 +7,12 @@
   "keywords": [
     "relay",
     "react",
-    "enzyme",
     "flow",
     "flowtype",
     "jest",
     "testing",
-    "relay modern",
+    "relaymodern",
+    "react-testing-library",
     "graphql",
     "components"
   ],
@@ -20,8 +20,8 @@
     "test": "jest src --coverage",
     "test:watch": "jest src --watch",
     "flow": "flow",
-    "graphql:generate-assets": "graphql-generate-flow-schema-assets --schema ./config/schema.json -e --enums-file-path ./src/constants/enums.js -o --object-types-file-path ./src/constants/object-types.js",
-    "relay": "relay-compiler --src ./src --schema ./config/schema.json",
+    "graphql:generate-assets": "graphql-generate-flow-schema-assets --schema ./config/schema.graphql -e --enums-file-path ./src/constants/enums.js -o --object-types-file-path ./src/constants/object-types.js",
+    "relay": "relay-compiler --src ./src --schema ./config/schema.graphql",
     "relay:watch": "yarn relay --watch"
   },
   "author": "Gabriel Nordeborn",
@@ -31,17 +31,17 @@
       "./config/jest-shims.js",
       "./config/jest-setup.js"
     ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": ["src/**/*"]
+    "setupTestFrameworkScriptFile": "./config/jest-setupTestFramework.js",
+    "collectCoverageFrom": [
+      "src/**/*"
+    ]
   },
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-relay": "^1.4.1",
-    "relay-compiler": "^1.4.1",
-    "relay-runtime": "^1.4.1"
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-relay": "^1.6.2",
+    "relay-compiler": "^1.6.2",
+    "relay-runtime": "^1.6.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -52,14 +52,15 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.0",
-    "enzyme-async-helpers": "^0.9.0",
-    "enzyme-to-json": "^3.2.2",
-    "flow-bin": "0.59",
-    "flow-typed": "^2.2.3",
-    "graphql-generate-flow-schema-assets": "^0.9.1",
-    "jest": "^21.2.1",
+    "flow-bin": "^0.79.1",
+    "flow-enum-validator": "^1.0.0",
+    "flow-typed": "^2.5.1",
+    "graphql": "^0.13.2",
+    "graphql-generate-flow-schema-assets": "^1.0.0",
+    "graphql-query-test-mock": "^0.9.0",
+    "jest": "^23.5.0",
+    "nock": "^9.6.1",
+    "react-testing-library": "^5.0.0",
     "regenerator-runtime": "^0.11.1"
   }
 }

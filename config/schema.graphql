@@ -1,0 +1,44 @@
+schema {
+  query: RootQuery
+}
+
+type RootQuery {
+  viewer: User
+  User(userId: ID!): User
+}
+
+type User {
+  id: ID!
+  name: String!
+  age: Int
+  pets(first: Int, after: String, last: Int, before: String): PetConnection
+}
+
+type Pet {
+  id: ID!
+  name: String!
+  owner: User
+  type: PetType
+}
+
+enum PetType {
+  CAT
+  DOG
+}
+
+type PetConnection {
+  pageInfo: PageInfo!
+  edges: [PetEdge]
+}
+
+type PetEdge {
+  node: Pet
+  cursor: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  endCursor: String
+  startCursor: String
+}
