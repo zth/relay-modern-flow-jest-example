@@ -16,7 +16,6 @@ export function fetchQuery(
       'content-type': 'application/json'
     },
     body: JSON.stringify({
-      name: operation.name, // Relay Modern exposes this when calling the fetchQuery function. We need to pass it to make sure our query mock knows the name of the query
       query: operation.text,
       variables
     })
