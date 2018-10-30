@@ -1,6 +1,7 @@
 // @flow
 import { cleanup } from 'react-testing-library';
 import { queryMock } from '../src/__testUtils__/queryMock';
+import { GRAPHQL_API_URL } from '../src/config/fetchQuery';
 
 beforeEach(() => {
   /**
@@ -9,7 +10,7 @@ beforeEach(() => {
    * We clean up mounted things from react-testing-library.
    */
 
-  queryMock.reset();
+  queryMock.setup(GRAPHQL_API_URL); // Initialize our queryMock for each test suite
 });
 
 afterEach(cleanup);
